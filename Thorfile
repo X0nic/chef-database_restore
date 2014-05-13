@@ -2,5 +2,6 @@
 
 require 'bundler'
 require 'bundler/setup'
-require 'berkshelf/thor'
+require 'thor/foodcritic'
 require 'thor/scmversion'
+require 'berkshelf/thor'
