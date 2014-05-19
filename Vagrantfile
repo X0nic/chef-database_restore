@@ -70,6 +70,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         server_root_password: 'rootpass',
         server_debian_password: 'debpass',
         server_repl_password: 'replpass'
+      },
+      :s3cmd => {
+        :secret_key => ENV['AWS_SECRECT_ACCESS_KEY'],
+        :access_key => ENV['AWS_ACCESS_KEY_ID']
       }
     }
 
