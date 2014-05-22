@@ -17,11 +17,16 @@
 # limitations under the License.
 
 include_recipe 'mysql::server'
-include_recipe 'hipsnip-s3cmd'
 
-
-bash 'wordpress.tar' do
-  code 's3cmd get s3://automagic-wordpress/backups/wordpressdb/2014.05.16.03.11.35/wordpressdb.tar'
-  not_if File.exists? 'wordpress.tar'
-  action :run
+s3_file "/tmp/wordpress.tar" do
+  remote_path "/backups/wordpressdb/2014.05.16.03.11.35/wordpressdb.tar"
+  bucket "automagic-wordpress"
+  aws_access_key_id node[:aws][:access_key]
+  aws_secret_access_key node[:aws][:secret_key]
+  # owner "me"
+  # group "mygroup"
+  # mode "0644"
+  action :create
+  # decryption_key "my SHA256 digest key"
+  # decrypted_file_checksum "SHA256 hex digest of decrypted file"
 end
