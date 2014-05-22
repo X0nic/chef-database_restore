@@ -18,3 +18,10 @@
 
 include_recipe 'mysql::server'
 include_recipe 'hipsnip-s3cmd'
+
+
+bash 'wordpress.tar' do
+  code 's3cmd get s3://automagic-wordpress/backups/wordpressdb/2014.05.16.03.11.35/wordpressdb.tar'
+  not_if File.exists? 'wordpress.tar'
+  action :run
+end
