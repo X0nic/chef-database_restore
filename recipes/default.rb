@@ -16,7 +16,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require 'chef/shell_out'
+
 include_recipe 'mysql::server'
+
+# execute 's3cmd ls' do
+#   command 's3cmd ls s3://automagic-wordpress/backups/wordpressdb'
+#   action :run
+# end
+ruby_block "Running windows finishing script" do
+  block do
+    require 'chef/mixin/shell_out'
+    extend Chef::Mixin::ShellOut
+    Chef::Log.info "This will take a while to complete. Sit back and have some
+beer."
+    results = shell_out "s3cmd ls s3://automagic-wordpress/backups/wordpressdb/"
+    Chef::Log.info "Output: #{ results.stdout }"
+  end
+end
 
 s3_file "/tmp/wordpress.tar" do
   remote_path "/backups/wordpressdb/2014.05.16.03.11.35/wordpressdb.tar"
