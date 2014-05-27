@@ -75,6 +75,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       :aws => {
         :secret_key => ENV['AWS_SECRECT_ACCESS_KEY'],
         :access_key => ENV['AWS_ACCESS_KEY_ID']
+      },
+      :database_restore => {
+        :s3_bucket = 's3://automagic-wordpress/backups/wordpressdb/'
       }
     }
 
