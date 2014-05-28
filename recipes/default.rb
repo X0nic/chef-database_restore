@@ -20,10 +20,6 @@ require 'chef/shell_out'
 
 include_recipe 'mysql::server'
 
-# execute 's3cmd ls' do
-#   command 's3cmd ls s3://automagic-wordpress/backups/wordpressdb'
-#   action :run
-# end
 ruby_block "Grabbing s3 bucket data" do
   block do
     require 'chef/mixin/shell_out'
@@ -50,10 +46,5 @@ s3_file "/tmp/wordpress.tar" do
   bucket "automagic-wordpress"
   aws_access_key_id node[:aws][:access_key]
   aws_secret_access_key node[:aws][:secret_key]
-  # owner "me"
-  # group "mygroup"
-  # mode "0644"
   action :create
-  # decryption_key "my SHA256 digest key"
-  # decrypted_file_checksum "SHA256 hex digest of decrypted file"
 end
