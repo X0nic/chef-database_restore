@@ -25,7 +25,7 @@ ruby_block "Grabbing s3 bucket data" do
     require 'chef/mixin/shell_out'
     extend Chef::Mixin::ShellOut
     s3_path = ''
-    results = shell_out "s3cmd ls #{node[:database_restore][:s3_bucket] | awk '{print $2}'"
+    results = shell_out "s3cmd ls #{node[:database_restore][:s3_bucket]} | awk '{print $2}'"
     dates = results.stdout.each_line.map do |line|
       d = line.match('(\d{4}(\.\d{2}){5})')[0]
       date = Date.parse(d)
