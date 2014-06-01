@@ -76,13 +76,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         :secret_key => ENV['AWS_SECRECT_ACCESS_KEY'],
         :access_key => ENV['AWS_ACCESS_KEY_ID']
       },
+      :s3cmd => {
+        :secret_key => ENV['AWS_SECRECT_ACCESS_KEY'],
+        :access_key => ENV['AWS_ACCESS_KEY_ID']
+      },
       :database_restore => {
         :s3_bucket => 's3://automagic-wordpress/backups/wordpressdb/'
       }
     }
 
     chef.run_list = [
-        "recipe[database_restore::default]"
+      "recipe[apt]",
+      "recipe[database_restore::default]"
     ]
   end
 end
