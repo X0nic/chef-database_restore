@@ -8,4 +8,3 @@ version          IO.read(File.join(File.dirname(__FILE__), 'VERSION')) rescue "0
 
 depends 'mysql'
 depends 'hipsnip-s3cmd'
-depends 's3_file'
