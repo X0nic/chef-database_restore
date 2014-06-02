@@ -25,6 +25,7 @@ ruby_block "Grabbing s3 bucket data" do
   block do
     require 'chef/mixin/shell_out'
     extend Chef::Mixin::ShellOut
+
     s3_path = ''
     Chef::Log.debug "Searching bucket: #{node[:database_restore][:s3_bucket]}"
     results = shell_out "s3cmd ls #{node[:database_restore][:s3_bucket]} | awk '{print $2}'"
@@ -41,16 +42,12 @@ ruby_block "Grabbing s3 bucket data" do
 
     Chef::Log.info "s3cmd ls #{newest_s3_path[:path]} | awk '{print $2}'"
     results = shell_out "s3cmd ls #{newest_s3_path[:path]} | awk '{print $4}'"
+
+    final_file_path = results.stdout
+    Chef::Log.info "Output: #{final_file_path}"
+
+    results = shell_out "cd /tmp && s3cmd get #{final_file_path}"
     Chef::Log.info "Output: #{results.stdout}"
-
-    # notifies :create, "s3_file[#{results.stdout]}"
+    Chef::Log.info "Output Error: #{results.stderr}"
   end
-end
-
-s3_file "/tmp/wordpress.tar" do
-  remote_path "/backups/wordpressdb/2014.05.16.03.11.35/wordpressdb.tar"
-  bucket "automagic-wordpress"
-  aws_access_key_id node[:aws][:access_key]
-  aws_secret_access_key node[:aws][:secret_key]
-  action :create
 end
