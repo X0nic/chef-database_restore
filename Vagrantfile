@@ -81,7 +81,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         :access_key => ENV['AWS_ACCESS_KEY_ID']
       },
       :database_restore => {
-        :s3_bucket => 's3://automagic-wordpress/backups/wordpressdb/'
+        :s3_bucket => 'automagic-wordpress',
+        :s3_dir_path => 'backups/wordpressdb'
       }
     }
 
