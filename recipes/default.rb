@@ -16,8 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'mysql::server'
-
 require 'fog'
 
 def s3_database_restore_file(s3_bucket, s3_dir_path, database)
