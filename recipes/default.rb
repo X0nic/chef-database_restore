@@ -110,3 +110,10 @@ mysql_database_user 'wordpress' do
   password   'super_secret'
   action     :create
 end
+
+mysql_database_user 'wordpress' do
+  connection    mysql_connection_info
+  database_name database_name
+  privileges    [:all]
+  action        :grant
+end
