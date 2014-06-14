@@ -56,12 +56,11 @@ chef_gem("fog") do
   action :install
 end
 
-database_name = 'wordpress'
-restore_file = s3_database_restore_file(node[:database_restore][:s3_bucket], node[:database_restore][:s3_dir_path], database_name)
+restore_file = s3_database_restore_file(node[:database_restore][:s3_bucket], node[:database_restore][:s3_dir_path], node[:database_restore][:database_name])
 
-remote_file "#{Chef::Config[:file_cache_path]}/#{database_name}.tar" do
+remote_file "#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_name]}.tar" do
   source restore_file
-  notifies :create, "mysql_database[#{database_name}]"
+  notifies :create, "mysql_database[#{node[:database_restore][:database_name]}]"
   action :create_if_missing
 end
 
@@ -75,13 +74,13 @@ mysql_connection_info = {
   :password => node['mysql']['server_root_password']
 }
 
-mysql_database database_name do
+mysql_database node[:database_restore][:database_name] do
   connection mysql_connection_info
   action     :create
 end
 
-libarchive_file "#{database_name}.tar" do
-  path "#{Chef::Config[:file_cache_path]}/#{database_name}.tar"
+libarchive_file "#{node[:database_restore][:database_name]}.tar" do
+  path "#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_name]}.tar"
   extract_to Chef::Config[:file_cache_path]
   action :extract
 end
@@ -105,15 +104,15 @@ mysql_database 'load_wordpressdb' do
   action :query
 end
 
-mysql_database_user 'wordpress' do
+mysql_database_user node[:database_restore][:database_user] do
   connection mysql_connection_info
   password   'super_secret'
   action     :create
 end
 
-mysql_database_user 'wordpress' do
+mysql_database_user node[:database_restore][:database_user] do
   connection    mysql_connection_info
-  database_name database_name
+  database_name node[:database_restore][:database_name]
   privileges    [:all]
   action        :grant
 end
