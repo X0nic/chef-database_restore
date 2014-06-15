@@ -82,7 +82,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       },
       :database_restore => {
         :s3_bucket => 'automagic-wordpress',
-        :s3_dir_path => 'backups/wordpressdb'
+        :s3_dir_path => 'backups/wordpressdb',
+        :database_backup_name => 'wordpressdb'
       }
     }
 

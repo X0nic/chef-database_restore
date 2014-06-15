@@ -85,9 +85,9 @@ libarchive_file "#{node[:database_restore][:database_name]}.tar" do
   action :extract
 end
 
-libarchive_file "wordpressdb.sql.gz" do
-  path "#{Chef::Config[:file_cache_path]}/wordpressdb/databases/MySQL/wordpressdb.sql.gz"
-  extract_to "#{Chef::Config[:file_cache_path]}/wordpressdb.sql"
+libarchive_file "#{node[:database_restore][:database_backup_name]}.sql.gz" do
+  path "#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_backup_name]}/databases/MySQL/#{node[:database_restore][:database_backup_name]}.sql.gz"
+  extract_to "#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_backup_name]}.sql"
   action :extract
 end
 
@@ -97,10 +97,10 @@ mysql_database 'flush the privileges' do
   action     :query
 end
 
-mysql_database 'load_wordpressdb' do
+mysql_database "load_#{node[:database_restore][:database_backup_name]}" do
   connection mysql_connection_info
   database_name 'wordpress'
-  sql { ::File.open("#{Chef::Config[:file_cache_path]}/wordpressdb.sql/data").read }
+  sql { ::File.open("#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_backup_name]}.sql/data").read }
   action :query
 end
 
