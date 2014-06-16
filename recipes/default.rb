@@ -20,7 +20,7 @@ include_recipe 'mysql::server'
 include_recipe "database::mysql"
 include_recipe "libarchive::default"
 
-s3_database_file node[:database_restore][:database_name] do
+database_restore_s3 node[:database_restore][:database_name] do
   s3_dir_path node[:database_restore][:s3_dir_path]
   s3_bucket node[:database_restore][:s3_bucket]
   database node[:database_restore][:database_name]
