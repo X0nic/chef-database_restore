@@ -21,6 +21,8 @@ include_recipe "database::mysql"
 include_recipe "libarchive::default"
 
 database_restore_s3 node[:database_restore][:database_name] do
+  aws_access_key_id node[:aws][:access_key]
+  aws_secret_access_key node[:aws][:secret_key]
   s3_dir_path node[:database_restore][:s3_dir_path]
   s3_bucket node[:database_restore][:s3_bucket]
   database node[:database_restore][:database_name]

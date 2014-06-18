@@ -23,8 +23,8 @@ action :create do
 
   connection = Fog::Storage.new({
     :provider              => 'AWS',
-    :aws_access_key_id     => node[:aws][:access_key],
-    :aws_secret_access_key => node[:aws][:secret_key]
+    :aws_access_key_id     => new_resource.aws_access_key_id,
+    :aws_secret_access_key => new_resource.aws_secret_access_key
   })
 
   Chef::Log.info "Searching for most recent database (#{new_resource.database}) at s3://#{new_resource.s3_bucket}/#{new_resource.s3_dir_path}"
