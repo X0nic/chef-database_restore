@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'berkshelf'
 gem 'thor-foodcritic'
 gem 'thor-scmversion'
+gem 'test-kitchen'
 
 # Uncomment these lines if you want to live on the Edge:
 #
@@ -16,3 +17,4 @@ gem 'thor-scmversion'
 #   gem "vagrant-omnibus", github: "schisamo/vagrant-omnibus"
 # end
 
+gem 'kitchen-vagrant'

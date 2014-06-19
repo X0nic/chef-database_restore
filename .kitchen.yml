@@ -1,0 +1,29 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+  attributes:
+    aws:
+      access_key: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+      secret_key: <%= ENV['AWS_SECRECT_ACCESS_KEY'] %>
+
+platforms:
+  - name: ubuntu-12.04
+    run_list:
+      - recipe[apt]
+
+suites:
+  - name: default
+    run_list:
+      - recipe[database_restore::default]
+    attributes:
+      mysql:
+        server_root_password: 'rootpass'
+        server_debian_password: 'debpass'
+        server_repl_password: 'replpass'
+      database_restore:
+        s3_bucket: 'automagic-wordpress'
+        s3_dir_path: 'backups/wordpressdb'
+        database_backup_name: 'wordpressdb'
