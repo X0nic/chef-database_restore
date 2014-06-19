@@ -1,5 +1,3 @@
-require 'fog'
-
 use_inline_resources
 
 action :create do
@@ -20,6 +18,8 @@ action :create do
     version '1.12.1'
     action :install
   end
+
+  require 'fog'
 
   connection = Fog::Storage.new({
     :provider              => 'AWS',
