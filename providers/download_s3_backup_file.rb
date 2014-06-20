@@ -36,7 +36,7 @@ action :create do
 
   s3_url = path.url(::Fog::Time.now + (60*60) )
 
-  remote_file "#{Chef::Config[:file_cache_path]}/#{new_resource.database}.tar" do
+  remote_file new_resource.name do
     source s3_url
     action :create_if_missing
   end

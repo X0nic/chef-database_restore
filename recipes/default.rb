@@ -20,7 +20,7 @@ include_recipe 'mysql::server'
 include_recipe "database::mysql"
 include_recipe "libarchive::default"
 
-database_restore_download_s3_backup_file node[:database_restore][:database_name] do
+database_restore_download_s3_backup_file "#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_name]}.tar" do
   aws_access_key_id node[:aws][:access_key]
   aws_secret_access_key node[:aws][:secret_key]
   s3_dir_path node[:database_restore][:s3_dir_path]
