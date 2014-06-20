@@ -32,4 +32,6 @@ end
 database_restore_from_file "#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_name]}.tar" do
   source "#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_name]}.tar"
   database_name node[:database_restore][:database_name]
+  database_backup_name node[:database_restore][:database_backup_name]
+  extract_to Chef::Config[:file_cache_path]
 end

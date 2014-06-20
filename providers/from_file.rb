@@ -15,20 +15,20 @@ action :load do
   end
 
   libarchive_file new_resource.name do
-    extract_to Chef::Config[:file_cache_path]
+    extract_to new_resource.extract_to
     action :extract
   end
 
-  libarchive_file "#{node[:database_restore][:database_backup_name]}.sql.gz" do
-    path "#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_backup_name]}/databases/MySQL/#{node[:database_restore][:database_backup_name]}.sql.gz"
-    extract_to "#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_backup_name]}.sql"
+  libarchive_file "#{new_resource.database_backup_name}.sql.gz" do
+    path "#{new_resource.extract_to}/#{new_resource.database_backup_name}/databases/MySQL/#{new_resource.database_backup_name}.sql.gz"
+    extract_to "#{new_resource.extract_to}/#{new_resource.database_backup_name}.sql"
     action :extract
   end
 
-  mysql_database "load_#{node[:database_restore][:database_backup_name]}" do
+  mysql_database "load_#{new_resource.database_backup_name}" do
     connection mysql_connection_info
     database_name new_resource.database_name
-    sql { ::File.open("#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_backup_name]}.sql/data").read }
+    sql { ::File.open("#{new_resource.extract_to}/#{new_resource.database_backup_name}.sql/data").read }
     action :query
   end
 
