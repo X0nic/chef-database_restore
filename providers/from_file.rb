@@ -4,9 +4,9 @@ action :load do
   title = new_resource.name
 
   mysql_connection_info = {
-    :host     => 'localhost',
-    :username => 'root',
-    :password => node['mysql']['server_root_password']
+    :host     => new_resource.mysql_host,
+    :username => new_resource.mysql_username,
+    :password => new_resource.mysql_password
   }
 
   mysql_database new_resource.database_name do
