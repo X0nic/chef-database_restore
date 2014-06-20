@@ -52,28 +52,9 @@ libarchive_file "#{node[:database_restore][:database_backup_name]}.sql.gz" do
   action :extract
 end
 
-mysql_database 'flush the privileges' do
-  connection mysql_connection_info
-  sql        'flush privileges'
-  action     :query
-end
-
 mysql_database "load_#{node[:database_restore][:database_backup_name]}" do
   connection mysql_connection_info
   database_name 'wordpress'
   sql { ::File.open("#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_backup_name]}.sql/data").read }
   action :query
-end
-
-mysql_database_user node[:database_restore][:database_user] do
-  connection mysql_connection_info
-  password   'super_secret'
-  action     :create
-end
-
-mysql_database_user node[:database_restore][:database_user] do
-  connection    mysql_connection_info
-  database_name node[:database_restore][:database_name]
-  privileges    [:all]
-  action        :grant
 end
