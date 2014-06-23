@@ -1,4 +1,4 @@
 language: ruby
 script:
   - bundle exec rake knife
-  - bundle exec rake foodcritic
+  - bundle exec thor foodcritic:lint
