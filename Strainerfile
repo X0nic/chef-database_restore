@@ -1,0 +1,2 @@
+knife test: knife cookbook test $COOKBOOK
+foodcritic: foodcritic --epic-fail any $SANDBOX/$COOKBOOK
