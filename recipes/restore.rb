@@ -32,5 +32,5 @@ database_restore_from_file "#{Chef::Config[:file_cache_path]}/#{node[:database_r
   extract_to Chef::Config[:file_cache_path]
   mysql_host 'localhost'
   mysql_username 'root'
-  mysql_password node['mysql']['server_root_password']
+  mysql_password node[:mysql][:server_root_password]
 end
