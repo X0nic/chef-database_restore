@@ -18,6 +18,7 @@ suites:
   - name: default
     run_list:
       - recipe[database_restore::default]
+      - recipe[database_restore::restore]
     attributes:
       mysql:
         server_root_password: 'rootpass'
