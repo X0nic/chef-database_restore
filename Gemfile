@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'berkshelf'
 gem 'thor-scmversion'
+gem 'strainer'
 
 group :test do
   gem 'chef', '~> 11.12.8'
