@@ -1,9 +1,14 @@
 source 'https://rubygems.org'
 
 gem 'berkshelf'
-gem 'thor-foodcritic'
 gem 'thor-scmversion'
-gem 'test-kitchen'
+
+group :test do
+  gem 'chef', '~> 11.12.8'
+  gem 'kitchen-vagrant'
+  gem 'test-kitchen'
+  gem 'thor-foodcritic'
+end
 
 # Uncomment these lines if you want to live on the Edge:
 #
@@ -17,4 +22,3 @@ gem 'test-kitchen'
 #   gem "vagrant-omnibus", github: "schisamo/vagrant-omnibus"
 # end
 
-gem 'kitchen-vagrant'
