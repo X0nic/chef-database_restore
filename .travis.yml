@@ -12,4 +12,6 @@ before_script:
   - bundle exec berks install
 
 script:
-  - bundle exec strainer test
+  # - bundle exec strainer test
+  - bundle exec rake knife
+  - bundle exec thor foodcritic:lint
