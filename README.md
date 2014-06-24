@@ -1,5 +1,7 @@
 # database_restore-cookbook
 
+[![Build Status](https://travis-ci.org/X0nic/chef-database_restore.svg?branch=master)](https://travis-ci.org/X0nic/chef-database_restore)
+
 TODO: Enter the cookbook description here.
 
 ## Supported Platforms
