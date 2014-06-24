@@ -1,7 +1,15 @@
 language: ruby
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
+
 bundler_args: --without development
 cache: bundler
+
 before_script:
   - bundle exec berks install
+
 script:
   - bundle exec strainer test
