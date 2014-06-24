@@ -1,4 +1,6 @@
 language: ruby
+bundler_args: --without development --deployment
+cache: bundler
 before_script:
   - bundle exec berks install
 script:
