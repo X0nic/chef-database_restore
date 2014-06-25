@@ -6,6 +6,10 @@ driver_config:
 provisioner:
   name: chef_zero
   require_chef_omnibus: latest
+  attributes:
+    aws:
+      access_key: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+      secret_key: <%= ENV['AWS_SECRECT_ACCESS_KEY'] %>
 
 platforms:
   - name: ubuntu-1204
