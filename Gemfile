@@ -1,25 +1,38 @@
 source 'https://rubygems.org'
 
-gem 'berkshelf'
-gem 'thor-scmversion'
-gem 'strainer'
-
-group :test do
-  gem 'chef', '~> 11.12.8'
-  gem 'kitchen-vagrant'
-  gem 'test-kitchen'
-  gem 'thor-foodcritic'
+group :lint do
+  gem 'foodcritic', '~> 3.0'
+  gem 'rubocop', '~> 0.18.0'
+  gem 'rainbow', '< 2.0'
 end
 
-# Uncomment these lines if you want to live on the Edge:
-#
-# group :development do
-#   gem "berkshelf", github: "berkshelf/berkshelf"
-#   gem "vagrant", github: "mitchellh/vagrant", tag: "v1.5.2"
-# end
-#
-# group :plugins do
-#   gem "vagrant-berkshelf", github: "berkshelf/vagrant-berkshelf"
-#   gem "vagrant-omnibus", github: "schisamo/vagrant-omnibus"
-# end
+group :unit do
+  gem 'berkshelf',  '~> 3.0'
+  gem 'chefspec',   '~> 3.1'
+  gem 'rspec',      '~> 2.14.0'
+end
 
+group :kitchen_common do
+  gem 'test-kitchen', '~> 1.2'
+end
+
+group :kitchen_vagrant do
+  gem 'kitchen-vagrant', '~> 0.11'
+end
+
+group :kitchen_cloud do
+  gem 'kitchen-digitalocean'
+  gem 'kitchen-ec2'
+end
+
+group :development do
+  gem 'ruby_gntp'
+  gem 'growl'
+  gem 'rb-fsevent'
+  gem 'guard', '~> 2.4'
+  gem 'guard-kitchen'
+  gem 'guard-foodcritic'
+  gem 'guard-rspec'
+  gem 'guard-rubocop'
+  gem 'rake'
+end
