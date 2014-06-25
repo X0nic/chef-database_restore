@@ -14,8 +14,7 @@ before_script:
   - bundle exec berks install
 
 script:
-  - bundle exec rake spec
-  - bundle exec rake style
+  - bundle exec rake travis
 
 env:
   global:

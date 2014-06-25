@@ -1,18 +1,23 @@
 ---
-driver:
-  name: vagrant
+driver_config:
+  digitalocean_client_id: <%= ENV['DIGITAL_OCEAN_CLIENT_ID'] %>
+  digitalocean_api_key: <%= ENV['DIGITAL_OCEAN_API_KEY'] %>
 
 provisioner:
-  name: chef_solo
-  attributes:
-    aws:
-      access_key: <%= ENV['AWS_ACCESS_KEY_ID'] %>
-      secret_key: <%= ENV['AWS_SECRECT_ACCESS_KEY'] %>
+  name: chef_zero
+  require_chef_omnibus: latest
 
 platforms:
-  - name: ubuntu-12.04
+  - name: ubuntu-1204
+    driver_plugin: digitalocean
+    driver_config:
+      image_id: 3101045
+      flavor_id: 63
+      region_id: 4
+      ssh_key_ids: <%= ENV['DIGITAL_OCEAN_SSH_KEY_IDS'] %>
+      ssh_key: <%= ENV['DIGITAL_OCEAN_SSH_KEY_PATH'] %>
     run_list:
-      - recipe[apt]
+    - recipe[apt]
     attributes:
       apt:
         compile_time_update: true
