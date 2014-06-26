@@ -11,12 +11,6 @@ before_install:
   - cat ~/.ssh/id_do.base64 | tr -d ' ' | base64 --decode >  ~/.ssh/id_do.pem
 
 before_script:
-  - echo ...aws...
-  - echo $AWS_ACCESS_KEY_ID
-  - echo $AWS_SECRECT_ACCESS_KEY
-  - echo $AWS_SECRECT_ACCESS_KEY2
-  - echo $AWS_SECRECT_ACCESS_KEY3
-  - echo ...aws...
   - bundle exec berks install
 
 script:
@@ -29,7 +23,7 @@ env:
   - secure: c8A8qNmAaqoJ7XdjqLkLjDlhtVxVuCyGLvc/O85VC2brBBAv4XZYGhlL9jzdtsJCJeO16nLYglDi079rri5U/8Nu3uE0t1K+WFRkcsgk9cD24MunVB2okYjexMMLwU1gWE3P3fB3qd6/OlJrPvpiWpSn3d4/8dksYMWLA+Clk7w=
   - secure: VGisRnK+fM+Ok+dNf7VPYQJ8CDpnDGmYO/D0ljrUB8s41w+WvWr+/SVRwnkskUicWYa+VbWjvIk/L0decVRE2isBNqacuPrAyiTV3nIbJM0p2KsWBezdCmoW10G7R3g1RKwzkbHcqs415KdkaDkhNKqtnaaETwwl+98cRW8SQ8I=
   - secure: Wo6yhSSdDXjUUUZmYhCDhwo27viSioerH5Nz+ZvVK/gXz+pSyYlHCfIZc9UJQ2cNMGRFW4QQ40Q4iMff0QwMiBfhvIYRB5KtNs4IUFuVjQ00hGZjcWlP5s8MAZqfWNoIH5Sv2cBSDE7Pwbf0EWO7Hodw0HhXahm6KBHdbHbZpUE=
-  - secure: QACVDcZqmPdS9/cNfHqMQB/yoFKuPqrrbiGjcshtdysSgJ/7ts9lVZc7hTVikbCtURXeKAM1D66+8iYNKY0/32UTOZEqh56rmdbU6xoWYyi+uj2IYv0h5zVAeRU3GOiyJMgBxF3aC0k37z7vzNr7z4MSfJvDMfA47c6URwpV4QM=
+  - secure: gYiQn3EbMrtGUzmvLYdux9c+VdK8PjKu4t1Ylw8rlfVTz8mPMiIYVO+y3wto84BPS2U3NaGKJ4LRner0AzW0eMjBxJu/eUB3TwnpObfaUXS/jIwZMQgsMlDN83xjvr1T9n1/sXUdkOAtiSzTTiRywQMIIJMv/SuR00a6Aop7VwQ=
   - secure: pAiTQ71B70Wwa8YJ5tPYSYlsl0CpH6Oz2Vh1JiFR3nbNlih9FYZtBac+e3mQ3F9lZwdviOnPEqRtIhIJpAavi/UbMCSkLqP7FF/9j1ohjuWkks3EatkJ3C7aAoElyTgmgU+xP6jCZw8M03P7YOdMEpVYTIbospyrzcF8exs+ek0=
   - secure: BPQF7x598IOM6yfM6e9XxRD6QsniOmM8q4rhJi6MUC8oiv2xQ4JLKnsxIShcjlF/IH7JMC1mCATVmJHbJjSt+S1xx78ya946/yYZpr/N8R/qk/+g8WtEFsNDCk+o/U3X8JhV5Kx5mXP7yxRz+3oWLjqAss+aLyPpTAho5oNL++w=
   - secure: Jd8faBZ2y+v+2DDU4chqE7UNBd6Q8FGTpBwD6SS2rEiTYaOxPHSZlkVdEJe22v7uHuzOEMmOosSOPi4jUlsxA9zRVXnQx6HwzYvVUO0eym3xxRi5HhyfjbWKHTGlGCwD91Sg8mfLEenvuqxebYLXnteSpk1lRPq4CwmYr/x8Hkc=
@@ -55,5 +49,3 @@ env:
   - secure: PoNNeF3xGz3p8dJ4F7INzFi/aXjav++9HS1bo8eiGnalB2HBmKqu9WA+vMa+nuuSVvkzRsDb01V5dujEbgkydAjig9jm52ubEXPENyanzPe+FAHu4e+BXt+Be0DFu3t0x7UmRuRAE2Yl6hYcPEWMGbMSQQfSNCmfMQ/2XX7ZmDU=
   - secure: aZHphF2mYlaP7UO2c7gvsp+cBITC8nEJdN2k4ahcYt4QaHJ3zUEhuGBOalsG5lkU4Nl4SvHAl9vspXR9VS7F4Z7G29iVGK6cbtsvaZRSDkWOJNeI6X2niYh2jiHxrCm5OvTw6QjBsMhPBvGHOIYI9O7Sdwt9plWWp+R1bOni9AM=
   - secure: fvF14RiJad+JsDQdtQHozisMg/vAjdusopTjKNuey1IUKr13L5D1mK2j7odPKvBlhmjdEcIdT+xanKCkE9fLMjt6NBcMqlUuC32BflxQyACW2PRXR7LXj4+CYBzC/+v3Qyas7xHV0IpwzJPJetVcUZ4AWW//rRFLnDRlkg+XowQ=
-  - secure: oVI7gs870eb2H2139ns9vNADA+NIkeZ+hBa7JFGanjomAHV87gaOCFjll3N/2hwjdigCqM6sfGYEwdWgWrTwwC+SbRR58SLH8pYJ92y/yQEqE9l7IzZKFMFLr7TVzXx27k1JmeGfBzqr/SMGMfSyHlw996gxyX16ZjI+CKew88s=
-  - secure: h+3mGsSwa7xLrfFFedr+39htKaonyP0pxiZtlhLocOwuV86rU4EmUYGv1/5jHkzfxzuJT1dLxttg3OA/kJgR43cca62oEpYnvxP6f04yOBJtnSvSf2EGOchiHqq1QJ+sRmS9LDRDWdinkDFzKjqdzPiq46aBaT/nedOQ4SawywI=
