@@ -11,6 +11,10 @@ before_install:
   - cat ~/.ssh/id_do.base64 | tr -d ' ' | base64 --decode >  ~/.ssh/id_do.pem
 
 before_script:
+  - echo ...aws...
+  - echo $AWS_ACCESS_KEY_ID
+  - echo $AWS_SECRECT_ACCESS_KEY
+  - echo ...aws...
   - bundle exec berks install
 
 script:
