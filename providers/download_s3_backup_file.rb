@@ -22,8 +22,8 @@ action :create do
   # Install the Fog gem dependencies
   #
   value_for_platform_family(
-    [:ubuntu, :debian]               => %w| build-essential libxslt1-dev libxml2-dev |,
-    [:rhel, :centos, :suse, :amazon] => %w| gcc gcc-c++ make libxslt-devel libxml2-devel |
+    [:ubuntu, :debian]               => %w(build-essential libxslt1-dev libxml2-dev),
+    [:rhel, :centos, :suse, :amazon] => %w(gcc gcc-c++ make libxslt-devel libxml2-devel)
   ).each do |pkg|
     package(pkg) { action :nothing }.run_action(:upgrade)
   end
