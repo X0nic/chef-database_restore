@@ -19,8 +19,6 @@
 use_inline_resources
 
 action :create do
-  title = new_resource.name
-
   # Install the Fog gem dependencies
   #
   value_for_platform_family(
@@ -32,18 +30,18 @@ action :create do
 
   # Install the Fog gem for Chef run
   #
-  chef_gem("fog") do
+  chef_gem('fog') do
     version '1.12.1'
     action :install
   end
 
   require 'fog'
 
-  connection = Fog::Storage.new({
-    :provider              => 'AWS',
-    :aws_access_key_id     => new_resource.aws_access_key_id,
-    :aws_secret_access_key => new_resource.aws_secret_access_key
-  })
+  connection = Fog::Storage.new(
+    provider:              'AWS',
+    aws_access_key_id:     new_resource.aws_access_key_id,
+    aws_secret_access_key: new_resource.aws_secret_access_key
+  )
 
   Chef::Log.info "Searching for most recent database (#{new_resource.database}) at s3://#{new_resource.s3_bucket}/#{new_resource.s3_dir_path}"
 
@@ -52,7 +50,7 @@ action :create do
 
   Chef::Log.info "Grabbing retore file from s3://#{new_resource.s3_bucket}/#{path.key}"
 
-  s3_url = path.url(::Fog::Time.now + (60*60) )
+  s3_url = path.url(::Fog::Time.now + (60 * 60))
 
   remote_file new_resource.name do
     source s3_url

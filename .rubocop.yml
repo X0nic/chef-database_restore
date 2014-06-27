@@ -1,0 +1,12 @@
+AllCops:
+  Excludes:
+    - tmp/**
+
+LineLength:
+  Enabled: false
+Documentation:
+  Enabled: false
+Encoding:
+  Enabled: false
+AlignHash:
+  EnforcedHashRocketStyle: table

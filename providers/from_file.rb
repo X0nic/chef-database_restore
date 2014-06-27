@@ -19,12 +19,10 @@
 use_inline_resources
 
 action :load do
-  title = new_resource.name
-
   mysql_connection_info = {
-    :host     => new_resource.mysql_host,
-    :username => new_resource.mysql_username,
-    :password => new_resource.mysql_password
+    host:     new_resource.mysql_host,
+    username: new_resource.mysql_username,
+    password: new_resource.mysql_password
   }
 
   mysql_database new_resource.database_name do

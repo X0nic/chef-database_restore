@@ -17,6 +17,5 @@
 # limitations under the License.
 
 include_recipe 'mysql::server'
-include_recipe "database::mysql"
-include_recipe "libarchive::default"
-
+include_recipe 'database::mysql'
+include_recipe 'libarchive::default'
