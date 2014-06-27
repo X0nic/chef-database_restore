@@ -11,3 +11,5 @@ Encoding:
   Enabled: false
 AlignHash:
   EnforcedHashRocketStyle: table
+SingleSpaceBeforeFirstArg:
+  Enabled: false
