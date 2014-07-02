@@ -28,24 +28,27 @@ action :load do
   mysql_database new_resource.database_name do
     connection mysql_connection_info
     action     :create
+    notifies   :extract, "libarchive_file[#{new_resource.name}]"
+    notifies   :extract, "libarchive_file[#{new_resource.database_backup_name}.sql.gz]"
+    notifies   :query,   "mysql_database[load_#{new_resource.database_backup_name}]"
   end
 
   libarchive_file new_resource.name do
     extract_to new_resource.extract_to
-    action :extract
+    action :nothing
   end
 
   libarchive_file "#{new_resource.database_backup_name}.sql.gz" do
     path "#{new_resource.extract_to}/#{new_resource.database_backup_name}/databases/MySQL/#{new_resource.database_backup_name}.sql.gz"
     extract_to "#{new_resource.extract_to}/#{new_resource.database_backup_name}.sql"
-    action :extract
+    action :nothing
   end
 
   mysql_database "load_#{new_resource.database_backup_name}" do
     connection mysql_connection_info
     database_name new_resource.database_name
     sql { ::File.open("#{new_resource.extract_to}/#{new_resource.database_backup_name}.sql/data").read }
-    action :query
+    action :nothing
   end
 
   new_resource.updated_by_last_action(true)
