@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/X0nic/chef-database_restore.svg?branch=master)](https://travis-ci.org/X0nic/chef-database_restore)
 
-TODO: Enter the cookbook description here.
+Cookbook to restore a mysql database backup generated from [Backup](https://github.com/meskyanichi/backup)
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+* Ubuntu 12.04
 
 ## Attributes
 
