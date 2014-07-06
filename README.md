@@ -1,8 +1,8 @@
-# database_restore-cookbook
+# Database Restore Cookbook
 
 [![Build Status](https://travis-ci.org/X0nic/chef-database_restore.svg?branch=master)](https://travis-ci.org/X0nic/chef-database_restore)
 
-Cookbook to restore a mysql database backup generated from [Backup](https://github.com/meskyanichi/backup)
+Cookbook to restore a mysql database backups generated from [Backup](https://github.com/meskyanichi/backup) Gem
 
 ## Supported Platforms
 
@@ -48,6 +48,29 @@ Cookbook to restore a mysql database backup generated from [Backup](https://gith
     <td><tt>node[:database_restore][:database_name]</tt></td>
   </tr>
 </table>
+
+## Resources/Providers
+
+```ruby
+database_restore_download_s3_backup_file "/tmp/database.tgz" do
+  aws_access_key_id 'YOUR_KEY_HERE'
+  aws_secret_access_key 'YOUR_SECRET_KEY_HERE'
+  s3_dir_path 'databases/mydatabase'
+  s3_bucket 'mybackups'
+  database 'mydatabase'
+  action :create
+end
+
+database_restore_from_file "/tmp/database.tgz" do
+  source "/tmp/database.tgz"
+  database_name 'mydatabase'
+  database_backup_name 'mydatabase'
+  extract_to '/tmp'
+  mysql_host 'localhost'
+  mysql_username 'databaseuser'
+  mysql_password 'password'
+end
+```
 
 ## Usage
 
