@@ -17,8 +17,8 @@
 # limitations under the License.
 
 database_restore_download_s3_backup_file "#{Chef::Config[:file_cache_path]}/#{node[:database_restore][:database_name]}.tar" do
-  aws_access_key_id node[:aws][:access_key]
-  aws_secret_access_key node[:aws][:secret_key]
+  aws_access_key_id node[:aws_access_key]
+  aws_secret_access_key node[:aws_secret_key]
   s3_dir_path node[:database_restore][:s3_dir_path]
   s3_bucket node[:database_restore][:s3_bucket]
   database node[:database_restore][:database_name]

@@ -3,11 +3,10 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
   attributes:
-    aws:
-      access_key: <%= ENV['AWS_ACCESS_KEY_ID'] %>
-      secret_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+    aws_access_key: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+    aws_secret_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
 
 platforms:
   - name: ubuntu-12.04

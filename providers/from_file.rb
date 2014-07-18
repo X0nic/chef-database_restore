@@ -19,6 +19,7 @@
 use_inline_resources
 
 action :load do
+
   mysql_connection_info = {
     host:     new_resource.mysql_host,
     username: new_resource.mysql_username,
