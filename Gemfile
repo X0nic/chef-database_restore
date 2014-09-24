@@ -36,4 +36,5 @@ group :development do
   gem 'rb-fsevent'
   gem 'ruby_gntp'
   gem 'stove'
+  gem 'thor-scmversion'
 end
