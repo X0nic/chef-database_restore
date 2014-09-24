@@ -4,6 +4,7 @@ require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'foodcritic'
 require 'kitchen'
+require 'stove/rake_task'
 
 # Style tests. Rubocop and Foodcritic
 namespace :style do
@@ -52,6 +53,8 @@ namespace :integration do
     end
   end
 end
+
+Stove::RakeTask.new
 
 desc 'Run all tests on Travis'
 task travis: ['style', 'spec', 'integration:cloud']
