@@ -1,6 +1,7 @@
 # Database Restore Cookbook
 
 [![Build Status](https://travis-ci.org/X0nic/chef-database_restore.svg?branch=master)](https://travis-ci.org/X0nic/chef-database_restore)
+[![Dependency Status](https://gemnasium.com/X0nic/chef-database_restore.svg)](https://gemnasium.com/X0nic/chef-database_restore)
 
 Cookbook to restore a mysql database backups generated from [Backup](https://github.com/meskyanichi/backup) Gem
 
