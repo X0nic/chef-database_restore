@@ -35,6 +35,7 @@ group :development do
   gem 'rake'
   gem 'rb-fsevent'
   gem 'ruby_gntp'
+  gem 'pry'
 end
 
 gem 'stove'
